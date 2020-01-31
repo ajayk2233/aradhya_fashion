@@ -14,14 +14,21 @@
             <td>Name</td>
             <td>Address</td>
             <td>Branch</td>
+            <td colspan="2">Actions</td>
         </tr>
-        {% for form in forms %}
+        {% for form in object_list %}
         <tr>
             
             <td>{{form.id}}</td>
             <td>{{form.name}}</td>
             <td>{{form.address}}</td>
             <td>{{form.branch}}</td>
+            <td><a href="/darjano/update/{{form.pk}}">edit</a></td>
+            <td><a href="javascript:{document.getElementById('formid').submit();}">delete</a></td>
+            <form method="POST" id="formid" action="/darjano/delete/{{form.pk}}">
+                {% csrf_token %}
+                <input type="hidden">
+            </form>
         </tr>
         {% endfor %}
     </table>
