@@ -19,10 +19,8 @@ class create(CreateView):
             data = {
                 'pk':self.object.pk
             }
-            print('Ajax')
             return JsonResponse(data)
         else:
-            print('shit yaar not ajax')
             return response
 
 class update(UpdateView):
@@ -31,9 +29,14 @@ class update(UpdateView):
     template_name = 'darjano/create.html'
     success_url = '/darjano/show'
     def get_queryset(self):
-        id = self.kwargs['pk']
-        return Salon.objects.filter(pk=id)
+        slug = self.kwargs['slug']
+        return Salon.objects.filter(slug=slug)
 
 class delete(DeleteView):
     model = Salon
     success_url = '/darjano/show'
+
+def deleteall(request):
+    data = Salon.objects.all()
+    data.delete()
+    return redirect('/darjano/show')

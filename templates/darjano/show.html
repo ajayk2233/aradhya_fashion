@@ -18,20 +18,22 @@
         <tr>
             <td>ID</td>
             <td>Name</td>
+            <td>Slug</td>
             <td>Address</td>
             <td>Branch</td>
-            <td colspan="2">Actions</td>
+            <td colspan="2">Actions<br><a href="/darjano/deleteall">Delete All</a></td>
         </tr>
         {% for form in object_list %}
         <tr>
             
             <td>{{form.id}}</td>
             <td>{{form.name}}</td>
+            <td>{{form.slug}}</td>
             <td>{{form.address}}</td>
             <td>{{form.branch}}</td>
-            <td><a href="/darjano/update/{{form.pk}}">edit</a></td>
+            <td><a href="/darjano/update/{{form.slug}}">edit</a></td>
             <td><p><a href="javascript:{document.getElementById('formid').submit();}">delete</a></p></td>
-            <form method="POST" id="formid" action="/darjano/delete/{{form.pk}}">
+            <form method="POST" id="formid" action="/darjano/delete/{{form.slug}}">
                 {% csrf_token %}
                 <input type="hidden">
             </form>

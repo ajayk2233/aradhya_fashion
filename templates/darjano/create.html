@@ -15,7 +15,12 @@
     <h1>Create Page</h1>
     <form method="POST" action="">
         {% csrf_token %}
-        {{form.as_p}}
+        {{form.name.label_tag}}
+        {{form.name}}<br><br>
+        {{form.address.label_tag}}
+        {{form.address}}<br><br>
+        {{form.branch.label_tag}}
+        {{form.branch}}<br><br>
         <input type="submit" value="Create">
     </form>
     <script type="text/javascript">
